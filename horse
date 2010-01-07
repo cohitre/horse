@@ -6,8 +6,17 @@ require 'enumclause'
 
 class CashhhhhhhError < StandardError; end
 
-
 $enumclause = Enumclause.new
+
+class String
+  def myspaceitify
+    a = ''
+    self.split("").each_with_index do |l, i|
+      a += i.even? ? l.downcase : l.upcase
+    end
+    a
+  end
+end
 
 module Horse
   HORSES = YAML.load(File.read('horses.yml'))
@@ -22,6 +31,7 @@ module Horse
   COLOR_ARRAY = COLORS.values - [COLORS[:default]]
 
   @cash_to_bet = rand(1000000000) + (rand(100).to_f / 100.0)
+
   class << self
     def play
       horse = nil
